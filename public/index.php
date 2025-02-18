@@ -1,5 +1,6 @@
 <?php
-include 'bootstrap.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+use App\Controllers\LoginController;
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +38,10 @@ include 'bootstrap.php';
                 break;
             case '/login':
                 include 'views/login.php';
+                break;
+            case '/api/login':
+                $LoginController = new LoginController();
+                $LoginController->handleRequest();
                 break;
             default:
                 include 'views/404.php';
