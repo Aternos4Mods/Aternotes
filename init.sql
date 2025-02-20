@@ -1,7 +1,7 @@
 USE aternotes;
 
 CREATE TABLE IF NOT EXISTS users (
-    id SERIAL UNIQUE PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT UNIQUE PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -9,12 +9,12 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE sessions (
+CREATE TABLE IF NOT EXISTS sessions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     session_id VARCHAR(255) NOT NULL,
-    user_id INT NOT NULL,
+    user_id BIGINT NOT NULL,
     data TEXT NOT NULL,
-    ip_address VARCHAR(45) NOT NULL,  -- Added field to store IP address
+    ip_address VARCHAR(45) NOT NULL,
     last_activity TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     expires_at TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
