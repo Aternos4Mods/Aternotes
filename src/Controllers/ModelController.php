@@ -22,7 +22,6 @@ abstract class ModelController
             ->setDatabase($_ENV['DATABASE_NAME']);
 
         \Aternos\Model\Driver\DriverRegistry::getInstance()->registerDriver($driver);
-        // Parse incoming JSON data
         $this->data = json_decode(file_get_contents("php://input"), true);
     }
 
