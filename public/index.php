@@ -1,7 +1,3 @@
-<?php
-require_once __DIR__ . '/../vendor/autoload.php';
-use App\Controllers\LoginController;
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,10 +34,6 @@ use App\Controllers\LoginController;
                 break;
             case '/login':
                 include 'views/login.php';
-                break;
-            case '/api/login':
-                $LoginController = new LoginController();
-                $LoginController->handleRequest();
                 break;
             default:
                 include 'views/404.php';
