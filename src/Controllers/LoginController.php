@@ -1,13 +1,17 @@
 <?php
-
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Http\Request; // Make sure to include the Request class
 
 class LoginController extends ModelController
 {
-    public function userHandler(string $username, string $password)
+    public function userHandler(Request $request) // Accepting Request object
     {
+        $username = $request->username; // Access username from the request data
+        $password = $request->password; // Access password from the request data
+
+        // Proceed with logic as before
         $user = User::select(['username' => $username]);
 
         $firstUser = $user[0] ?? null;
