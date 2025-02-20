@@ -16,6 +16,7 @@ abstract class ModelController
         $dotenv->load();
 
         $driver = (new \Aternos\Model\Driver\Mysqli\Mysqli())
+            ->setHost($_ENV['DATABASE_HOST'])
             ->setUsername($_ENV['DATABASE_USER'])
             ->setPassword($_ENV['DATABASE_PASSWORD'])
             ->setDatabase($_ENV['DATABASE_NAME']);
