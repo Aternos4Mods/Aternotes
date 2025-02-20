@@ -27,7 +27,7 @@ services:
   mariadb:
     image: mariadb:latest
     environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}  # Change this for your production setup
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}  # Change this for your production setup
       MYSQL_DATABASE: ${DATABASE_NAME} # Database name to be created
       MYSQL_USER: ${DATABASE_USER}  # User for accessing the DB
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}  # User password
