@@ -6,7 +6,7 @@ namespace App\Controllers;
 use App\Models\Session;
 use DateTime;
 
-class SessionController
+class SessionController extends ModelController
 {
     public function createSession($user_id)
     {
