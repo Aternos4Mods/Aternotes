@@ -27,18 +27,7 @@
         </nav>
     </header>
     <?php
-        $url = $_SERVER['REQUEST_URI'] ?? 'home';
-        switch ($url) {
-            case '/':
-                include 'views/home.php';
-                break;
-            case '/login':
-                include 'views/login.php';
-                break;
-            default:
-                include 'views/404.php';
-                break;
-        }
+        include 'web.php';
     ?>
 </body>
 </html>
