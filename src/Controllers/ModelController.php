@@ -2,19 +2,14 @@
 
 namespace App\Controllers;
 
-use Dotenv;
-use App\Models\User;
+use App\Http\Request;
 
 abstract class ModelController
 {
     protected $data;
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-
-        $dotenv = Dotenv\Dotenv::createImmutable('../');
-        $dotenv->load();
-
         $driver = (new \Aternos\Model\Driver\Mysqli\Mysqli())
             ->setHost($_ENV['DATABASE_HOST'])
             ->setUsername($_ENV['DATABASE_USER'])
@@ -22,10 +17,11 @@ abstract class ModelController
             ->setDatabase($_ENV['DATABASE_NAME']);
 
         \Aternos\Model\Driver\DriverRegistry::getInstance()->registerDriver($driver);
-        $this->data = json_decode(file_get_contents("php://input"), true);
+
+        $this->data = $request->getData();
     }
 
-    public function handleRequest()
+    public function handleRequest(Request $request)
     {
         $function = $this->data['function'] ?? null;
 
@@ -37,10 +33,9 @@ abstract class ModelController
             }
 
             $params = $this->data;
-            unset($params['function']); // Remove 'function' from the data array
+            unset($params['function']);
 
-            // Call the method with parameters
-            call_user_func_array([$this, $function], $params);
+            call_user_func_array([$this, $function], [$request]);
         } else {
             echo json_encode(['error' => 'Function was not passed', 'status' => 404]);
             http_response_code(404);
