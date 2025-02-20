@@ -1,3 +1,9 @@
+<?php
+if (isset($_COOKIE) && $_COOKIE['user']) {
+    header('Location: /dashboard');
+}
+?>
+
 <main>
     <div class="container">
         <div class="login__container">
@@ -34,7 +40,11 @@
                 },
                 body: JSON.stringify(formData)
             })
-                .then(data => console.log(data))
+                .then(data => {
+                    if (data.status === 200) {
+                        window.location.replace('/dashboard');
+                    }
+            })
                 .catch(error => {console.error(error)})
             
             
