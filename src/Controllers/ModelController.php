@@ -15,8 +15,6 @@ abstract class ModelController
         $dotenv = Dotenv\Dotenv::createImmutable('../');
         $dotenv->load();
 
-        var_dump($_ENV);
-
         $driver = (new \Aternos\Model\Driver\Mysqli\Mysqli())
             ->setUsername($_ENV['DATABASE_USER'])
             ->setPassword($_ENV['DATABASE_PASSWORD'])
