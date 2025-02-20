@@ -8,7 +8,7 @@ abstract class ModelController
 {
     protected $data;
 
-    public function __construct(Request $request)
+    public function __construct(?Request $request = null)
     {
         $driver = (new \Aternos\Model\Driver\Mysqli\Mysqli())
             ->setHost($_ENV['DATABASE_HOST'])
@@ -18,7 +18,9 @@ abstract class ModelController
 
         \Aternos\Model\Driver\DriverRegistry::getInstance()->registerDriver($driver);
 
-        $this->data = $request->getData();
+        if ($request) {
+            $this->data = $request->getData();
+        }
     }
 
     public function handleRequest(Request $request)
