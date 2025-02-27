@@ -5,7 +5,6 @@ namespace App\Controllers;
 
 use App\Models\Session;
 use DateTime;
-use App\Http\Log;
 
 class SessionController extends ModelController
 {
@@ -23,12 +22,9 @@ class SessionController extends ModelController
         $session->setIpAddress($this->getUserIp());  // Store the IP address
 
         // Set the session ID cookie to persist across pages until the browser is closed
-        Log::info('In session controller');
-
-        // Save the session
-        $test = $session->save();
-
         setcookie('session_id', $session_id, time() + 3600 * 24 * 30, '/', '', true, true); // 30-day expiration, HttpOnly, Secure
+        // Save the session
+        $session->save();
 
         return $session_id;
     }
@@ -36,10 +32,8 @@ class SessionController extends ModelController
     public function sessionExists($session_id)
     {
         // Retrieve the session from the database
-        if ($session_id) {
-            $session = Session::select(["session_id", $session_id]);
-            $session = $session[0] ?? null;
-        }
+        $session = Session::select(["session_id", $session_id]);
+        $session = $session[0] ?? null;
 
         if ($session) {
             $now = new \DateTime();

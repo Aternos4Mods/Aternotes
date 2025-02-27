@@ -1,0 +1,47 @@
+{
+  "name": "aternos/model",
+  "description": "PHP library for simple and complex database models",
+  "keywords": [
+    "database",
+    "model"
+  ],
+  "readme": "README.md",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matthias Neid",
+      "email": "matthias@aternos.org"
+    }
+  ],
+  "support": {
+    "source": "https://github.com/aternosorg/php-model",
+    "issues": "https://github.com/aternosorg/php-model/issues"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=8.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "elasticsearch/elasticsearch": "^7.10",
+    "phpunit/phpunit": "^10.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aternos\\Model\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Aternos\\Model\\Test\\Tests\\": "test/tests/",
+      "Aternos\\Model\\Test\\Src\\": "test/src/"
+    }
+  },
+  "suggest": {
+    "ext-redis": "To use the Redis Cache driver",
+    "ext-cassandra": "To use the Cassandra NoSQL driver",
+    "ext-mysqli": "To use the Mysqli Relational driver",
+    "elasticsearch/elasticsearch": "To use the Elasticsearch Search driver"
+  }
+}
