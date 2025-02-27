@@ -12,15 +12,16 @@ class SessionController extends ModelController
     public function createSession($user_id)
     {
         $session_id = bin2hex(random_bytes(32)); // Create a secure random session ID
-        $expires_at = (new \DateTime())->modify('+30 days')->format('Y-m-d H:i:s'); // Session expiration time
+        $expires_at = $expires_at = (new \DateTime())->modify('+30 days')->format('Y-m-d H:i:s'); // Session expiration time
 
         // Create a new session record in the database
         $session = new Session();
-        $session->setSessionId($session_id);
-        $session->setUserId($user_id);
-        $session->setData(serialize([]));  // Start with empty session data
-        $session->setExpiresAt($expires_at);
-        $session->setIpAddress($this->getUserIp());  // Store the IP address
+        $session->session_id = $session_id;
+        $session->user_id = $user_id;
+        $session->data = serialize([]);  // Start with empty session data
+        $session->expires_at = $expires_at;
+        $session->last_activity = (new \DateTime())->format('Y-m-d H:i:s');
+        $session->ip_address = $this->getUserIp();  // Store the IP address
 
         // Set the session ID cookie to persist across pages until the browser is closed
         Log::debug([$session_id, $expires_at, $this->getUserIp(), $user_id]);
