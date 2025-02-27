@@ -9,6 +9,9 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+INSERT INTO users (username, password, email)
+VALUES ('test', '$2a$12$p29i.Xn0fHs.SxCtThHgneIGms.Y5Tykl9HcruyJyasaVkTPQZ9US', 'joshua@dynamatrix.io');
+
 CREATE TABLE IF NOT EXISTS sessions (
     id INT AUTO_INCREMENT PRIMARY KEY,
     session_id VARCHAR(255) NOT NULL,
