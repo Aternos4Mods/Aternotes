@@ -7,6 +7,10 @@ $requestUri = $_SERVER['REQUEST_URI'];
 $request = new Request();
 
 switch ($requestUri) {
+    case '/api/user':
+        $LoginController = new LoginController();
+        $LoginController->getUser();
+        break;
     case '/api/login':
         $LoginController = new LoginController($request);
         $LoginController->handleRequest($request);
