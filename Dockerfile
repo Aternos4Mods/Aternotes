@@ -10,6 +10,11 @@ WORKDIR /var/www/html
 
 COPY . /var/www/html
 
+RUN chown -R www-data:www-data /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/storage/framework
+RUN chmod -R 755 /var/www/html/
+RUN chmod -R 755 /var/www/html/storage/framework
+
 RUN composer install --no-dev --no-interaction --prefer-dist
 
 EXPOSE 9000
