@@ -23,7 +23,7 @@ class SessionController extends ModelController
         $session->setIpAddress($this->getUserIp());  // Store the IP address
 
         // Set the session ID cookie to persist across pages until the browser is closed
-        Log::info('In session controller');
+        Log::debug([$session_id, $expires_at, $this->getUserIp(), $user_id]);
 
         // Save the session
         $test = $session->save();
