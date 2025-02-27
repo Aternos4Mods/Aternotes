@@ -8,6 +8,10 @@ class Log
     {
         $loggingFile = __DIR__ . '/../../storage/framework/aternotes.log';
         file_exists($loggingFile) || touch($loggingFile);
+        
+        if (is_array($message) || is_object($message)) {
+            $message = json_encode($message); // Convert to JSON
+        }
 
         file_put_contents($loggingFile, sprintf("[%s] %s: %s\n", date('d-m-Y H:i:s'), $level, $message), FILE_APPEND);
     }
