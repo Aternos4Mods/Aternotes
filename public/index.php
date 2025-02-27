@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,6 @@
     <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/root.css">
-    <script src="javascript/logoAnimation.js"></script>
 </head>
 <body>
     <header>
@@ -18,9 +16,9 @@
                 </button>
             </div>
             <div class="navbar__right">
-                <a class="navbar__container" href="/login">
+                <a class="navbar__container" href={{link}}>
                     <button class="navbar__button">
-                        <span class="navbar_button--paddingEven">Log in</span>
+                        <span class="navbar_button--paddingEven">{{link}}</span>
                     </button>
                 </a>
             </div>
@@ -29,5 +27,12 @@
     <?php
         include 'web.php';
     ?>
+    <script src="../../javascript/logoAnimation.js" defer></script>
+    <script>const link = '/login';</script>
+<!--    <script src="javascript/templating.js"></script>-->
+<!-- TODO: Fix templating breaking requests for logging in -->
 </body>
 </html>
+
+<?php
+?>
