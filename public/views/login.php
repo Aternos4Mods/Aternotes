@@ -1,6 +1,7 @@
 <?php
-if (isset($_COOKIE) && $_COOKIE['user']) {
+if (isset($_COOKIE) && isset($_COOKIE['user'])) {
     header('Location: /dashboard');
+    exit();
 }
 ?>
 
