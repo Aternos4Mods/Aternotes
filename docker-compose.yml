@@ -36,6 +36,8 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
+    ports:
+      - "3306:3306"
 
 networks:
   app-network:
